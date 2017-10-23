@@ -52,6 +52,8 @@ def mrouter_main():
     config = configparser.ConfigParser()
     config.read(mrouter_config_file)
 
+    port = int(config['ROUTER']['port'])
+
     info = {
         'id': config['ROUTER']['id'],
         'server': config['SERVER']['ip'],
@@ -59,12 +61,11 @@ def mrouter_main():
         'port': int(config['SERVER']['port'])}
 
     logger.info("IoT Server %s", info['server'])
-    logger.info("IP %s:%d", info['router'],
-                info['port'])
+    logger.info("IP %s:%d", info['router'], port)
 
     signal.signal(signal.SIGINT, handler)
 
-    p = Process(target=beacon_process, args=(info['port'], info))
+    p = Process(target=beacon_process, args=(port, info))
     p.start()
     proc.append(p)
 
