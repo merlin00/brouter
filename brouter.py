@@ -56,7 +56,7 @@ def mrouter_main():
         'id': config['ROUTER']['id'],
         'server': config['SERVER']['ip'],
         'router': config['ROUTER']['bind'],
-        'port': int(config['ROUTER']['port'])}
+        'port': int(config['SERVER']['port'])}
 
     logger.info("IoT Server %s", info['server'])
     logger.info("IP %s:%d", info['router'],
