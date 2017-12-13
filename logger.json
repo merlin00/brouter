@@ -1,33 +1,42 @@
 {
-		"version": 1,
-		"formatters": {
-				"basic": {
-						"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-				}
-		},
-		"handlers": {
-				"console": {
-						"class": "logging.StreamHandler",
-						"level": "DEBUG",
-						"formatter": "basic",
-						"stream": "ext://sys.stdout"
-				},
-				"beacon_log_file": {
-						"class": "logging.handlers.RotatingFileHandler",
-						"formatter": "basic",
-						"filename": "beacon.log",
-						"maxBytes": 1024,
-						"backupCount": 3
-				}
-		},
-		"loggers": {
-				"beacon_proc": {
-						"level": "DEBUG",
-						"handlers": ["console"]
-				},
-				"mrouter": {
-						"level": "DEBUG",
-						"handlers": ["console"]
-				}
-		}
+    "version": 1,
+    "formatters": {
+	"basic": {
+	    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+	}
+    },
+    "handlers": {
+	"console": {
+	    "class": "logging.StreamHandler",
+	    "level": "DEBUG",
+	    "formatter": "basic",
+	    "stream": "ext://sys.stdout"
+	},
+	"rotfile": {
+	    "class": "logging.handlers.RotatingFileHandler",
+	    "formatter": "basic",
+	    "filename": "/var/log/beacon.log",
+	    "maxBytes": 1024,
+	    "backupCount": 3
+	},
+	"network": {
+	    "class": "logging.handlers.SocketHandler",
+	    "host": "localhost",
+	    "port": "9020"
+	}
+    },
+    "loggers": {
+	"router.con": {
+	    "level": "DEBUG",
+	    "handlers": ["console"]
+	},
+	"router.net": {
+	    "level": "DEBUG",
+	    "handlers": ["network"]
+	},
+	"router.file": {
+	    "level": "DEBUG",
+	    "handlers": ["rotfile"]
+	}
+    }
 }

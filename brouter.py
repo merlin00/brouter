@@ -47,7 +47,7 @@ def mrouter_main():
         logger_cfg = json.load(f)
 
     logging.config.dictConfig(logger_cfg)
-    logger = logging.getLogger("mrouter")
+    logger = logging.getLogger("router.net")
 
     config = configparser.ConfigParser()
     config.read(mrouter_config_file)
