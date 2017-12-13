@@ -21,7 +21,7 @@ def beacon_process(port, info):
     s.settimeout(2)
     s.bind(("", port))
 
-    logger = logging.getLogger('beacon_proc')
+    logger = logging.getLogger('router.net')
     logger.info("Started a beacon server.")
 
     while True:
